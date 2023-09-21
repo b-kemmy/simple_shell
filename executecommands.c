@@ -8,6 +8,9 @@ void executeCommands(const char *input)
 char *token;
 char *commands[100];
 int num_commands = 0;
+
+pid_t child_pid;
+
 token = strtok((char *)input, " ");
 
 while (token != NULL)
@@ -16,7 +19,8 @@ commands[num_commands] = token;
 num_commands++;
 token = strtok(NULL, " ");
 }
-pid_t child_pid = fork();
+
+child_pid = fork();
 commands[num_commands] = NULL;
 
 if (child_pid == -1)
