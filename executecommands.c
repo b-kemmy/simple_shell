@@ -12,12 +12,12 @@ token = strtok((char *)input, " ");
 
 while (token != NULL)
 {
-pid_t child_pid = fork();
-commands[num_commands] = NULL;
 commands[num_commands] = token;
 num_commands++;
 token = strtok(NULL, " ");
 }
+pid_t child_pid = fork();
+commands[num_commands] = NULL;
 
 if (child_pid == -1)
 {
