@@ -11,6 +11,8 @@
 
 static void replace_variable(char **src, char **dest,bool prev_command_success)
 {
+	int i;
+
 	if (**src == '$')
 	{
 		(*src)++;
@@ -19,9 +21,7 @@ static void replace_variable(char **src, char **dest,bool prev_command_success)
 			int exit_status = (prev_command_success) ? 0 : 1;
 			char exit_status_str[12];
 
-			snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
-			int i;
-
+			snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);			
 			for ( i = 0; exit_status_str[i] != '\0'; i++)
 			{
 				putchar(exit_status_str[i]);
@@ -34,7 +34,7 @@ static void replace_variable(char **src, char **dest,bool prev_command_success)
 			char pid_str[12];
 
 			snprintf(pid_str, sizeof(pid_str), "%d", pid);
-			for (int i = 0; pid_str[i] != '\0'; i++)
+			for (i = 0; pid_str[i] != '\0'; i++)
 			{
 				putchar(pid_str[i]);
 			}
@@ -50,57 +50,6 @@ static void replace_variable(char **src, char **dest,bool prev_command_success)
 		putchar(**src);
 		(*src)++;
 	}
-=======
-* replace_variable - Replace a single variable in the input.
-* @src: The source string.
-* @prev_command_success: The success status of the previous command.
-*
-* This function replaces a single variable in the input string with its value.
-*/
-static void replace_variable(char **src, bool prev_command_success)
-{
-int i; /* Declare i at the beginning of the block */
-if (**src == '$')
-{
-(*src)++;
-if (**src == '?')
-{
-int exit_status = (prev_command_success) ? 0 : 1;
-char exit_status_str[12];
-
-snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
-
-for (i = 0; exit_status_str[i] != '\0'; i++)
-{
-putchar(exit_status_str[i]);
-}
-(*src)++;
-}
-else if (**src == '$')
-{
-int pid = getpid();
-char pid_str[12];
-
-snprintf(pid_str, sizeof(pid_str), "%d", pid);
-for (i = 0; pid_str[i] != '\0'; i++)
-{
-putchar(pid_str[i]);
-}
-(*src)++;
-}
-else
-{
-putchar('$');
-}
-}
-else
-{
-putchar(**src);
-(*src)++;
-}
->>>>>>> 204a80a8ed680e74c1b207bd9ab83c4b561d7204
-}
-
 /**
 * replace_variables - Replaces special variables in a command.
 * @command: The input command.
