@@ -9,9 +9,10 @@
  * This function replaces a single variable in the input string with its value.
  */
 
-static void replace_variable(char **src, char **dest,
-bool prev_command_success)
+static void replace_variable(char **src, char **dest,bool prev_command_success)
 {
+	int i;
+
 	if (**src == '$')
 	{
 		(*src)++;
@@ -22,7 +23,7 @@ bool prev_command_success)
 
 			snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
 
-			for (int i = 0; exit_status_str[i] != '\0'; i++)
+			for (i = 0; exit_status_str[i] != '\0'; i++)
 			{
 				putchar(exit_status_str[i]);
 			}
@@ -34,7 +35,7 @@ bool prev_command_success)
 			char pid_str[12];
 
 			snprintf(pid_str, sizeof(pid_str), "%d", pid);
-			for (int i = 0; pid_str[i] != '\0'; i++)
+			for (i = 0; pid_str[i] != '\0'; i++)
 			{
 				putchar(pid_str[i]);
 			}
