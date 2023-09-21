@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
-#include <unistd.h>  /* For getpid */
-
-/* Function declarations */
-static void replace_variable(char **src, bool prev_command_success);
-char *replace_variables(char *command, bool prev_command_success);
-void handle_commands(char *input);
+#include "shell.h"
 
 /**
  * replace_variable - Replace a single variable in the input.
