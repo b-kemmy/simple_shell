@@ -32,8 +32,9 @@ token = my_strtok(NULL, " ", &saveptr))
 		if (num_args >= MAX_ARGS)
 		{
 			char error_message[] = "Too many arguments. Maximum allowed is 10.\n";
+			int i;
 
-			for (int i = 0; error_message[i] != '\0'; i++)
+			for (i = 0; error_message[i] != '\0'; i++)
 			{
 				_putchar(error_message[i]);
 			}
@@ -72,8 +73,9 @@ void executeCmd(char **args, int num_args)
 			{
 				execvp(args[0], args);
 				char error_message[] = "Executable cannot be found\n";
+				int i;
 
-				for (int i = 0; error_message[i] != '\0'; i++)
+				for (i = 0; error_message[i] != '\0'; i++)
 				{
 					_putchar(error_message[i]);
 				}
