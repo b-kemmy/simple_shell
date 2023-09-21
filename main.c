@@ -36,7 +36,9 @@ int main(void)
  */
 void displayPrompt(const char *prompt)
 {
-	for (int i = 0; prompt[i] != '\0'; i++)
+	int i;
+
+	for (i = 0; prompt[i] != '\0'; i++)
 	{
 		_putchar(prompt[i]);
 	}
