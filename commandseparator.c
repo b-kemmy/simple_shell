@@ -63,15 +63,14 @@ static void replace_variable(char **src, char **dest, bool prev_command_success)
 char *replace_variables(char *command, bool prev_command_success)
 {
 	char *result = malloc(strlen(command) + 1);
+	char *src = command;
+	char *dest = result;
 
 	if (!result)
 	{
 		perror("malloc");
 		exit(EXIT_FAILURE);
 	}
-
-	char *src = command;
-	char *dest = result;
 
 	while (*src)
 	{
