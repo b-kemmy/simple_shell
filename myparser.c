@@ -15,7 +15,7 @@ int parseCmd(char *input, char **args)
 	int num_args = 0;
 	char *new_line = strchr(input, '\n');
 	char *token;
-        char *saveptr = NULL;
+	char *saveptr = NULL;
 
 	if (new_line)
 	{
