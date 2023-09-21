@@ -54,6 +54,10 @@ token = my_strtok(NULL, " ", &saveptr))
  */
 void executeCmd(char **args, int num_args)
 {
+	char error_message[] = "Executable ca    nnot be found\n";
+	int i;
+	execvp(args[0], args);
+
 	if (num_args > 0)
 	{
 		if (strcmp(args[0], "exit") == 0)
@@ -70,10 +74,6 @@ void executeCmd(char **args, int num_args)
 
 			if (pid == 0)
 			{
-				execvp(args[0], args);
-				char error_message[] = "Executable cannot be found\n";
-				int i;
-
 				for (i = 0; error_message[i] != '\0'; i++)
 				{
 					_putchar(error_message[i]);
