@@ -9,7 +9,7 @@
  * This function replaces a single variable in the input string with its value.
  */
 
-static void replace_variable(char **src, bool prev_command_success)
+static void replace_variable(char **src, char **dest,bool prev_command_success)
 {
 	int i;
 
