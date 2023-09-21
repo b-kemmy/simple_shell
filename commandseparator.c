@@ -21,8 +21,9 @@ bool prev_command_success)
 			char exit_status_str[12];
 
 			snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
+			int i;
 
-			for (int i = 0; exit_status_str[i] != '\0'; i++)
+			for ( i = 0; exit_status_str[i] != '\0'; i++)
 			{
 				putchar(exit_status_str[i]);
 			}
