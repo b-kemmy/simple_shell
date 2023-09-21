@@ -9,6 +9,9 @@
 */
 ssize_t my_getline(char **lineptr, size_t *n, FILE *stream)
 {
+size_t i = 0;
+int c;
+
 if (*lineptr == NULL || *n == 0)
 {
 *n = 128; /** Initial buffer size */
@@ -18,8 +21,6 @@ if (*lineptr == NULL)
 return (-1); /** Allocation failure */
 }
 }
-size_t i = 0;
-int c;
 
 while (1)
 {
