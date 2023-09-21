@@ -53,14 +53,13 @@ char *readInput()
 {
 	char *input = NULL;
 	size_t input_size = 0;
+	char *new_line = strchr(input, '\n');
 
 	if (my_getline(&input, &input_size, stdin) == -1)
 	{
 		perror("my_getline");
 		return (NULL);
 	}
-
-	char *new_line = strchr(input, '\n');
 
 	if (new_line)
 	{
