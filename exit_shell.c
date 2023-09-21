@@ -6,7 +6,9 @@
 void exitShell(void)
 {
 char message[] = "Exiting the shell.\n";
-for (int i = 0; message[i] != '\0'; i++)
+int i;
+
+for (i = 0; message[i] != '\0'; i++)
 {
 _putchar(message[i]);
 }
