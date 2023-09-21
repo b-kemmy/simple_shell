@@ -9,6 +9,8 @@ char *token;
 char *commands[100];
 int num_commands = 0;
 token = strtok((char *)input, " ");
+pid_t child_pid = fork();
+commands[num_commands] = NULL;
 
 while (token != NULL)
 {
@@ -16,8 +18,6 @@ commands[num_commands] = token;
 num_commands++;
 token = strtok(NULL, " ");
 }
-commands[num_commands] = NULL;
-pid_t child_pid = fork();
 
 if (child_pid == -1)
 {
