@@ -12,6 +12,7 @@
  */
 int parseCmd(char *input, char **args)
 {
+	int num_args = 0;
 	char *new_line = strchr(input, '\n');
 
 	if (new_line)
@@ -19,7 +20,6 @@ int parseCmd(char *input, char **args)
 		*new_line = '\0';
 	}
 
-	int num_args = 0;
 	char *token;
 	char *saveptr = NULL;
 
