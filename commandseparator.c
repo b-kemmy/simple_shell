@@ -101,7 +101,6 @@ command = strtok(input, ";");
 while (command != NULL)
 {
 char *trimmed_command;
-int i; /* Declare i at the beginning of the block */
 char *saveptr = NULL;
 
 trimmed_command = strtok_r(command, " \t\n\r\f\v", &saveptr);
