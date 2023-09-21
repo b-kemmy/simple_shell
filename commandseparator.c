@@ -1,17 +1,24 @@
-#include "shell.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#include <unistd.h>  /* For getpid */
+
+/* Function declarations */
+static void replace_variable(char **src, bool prev_command_success);
+char *replace_variables(char *command, bool prev_command_success);
+void handle_commands(char *input);
 
 /**
 * replace_variable - Replace a single variable in the input.
 * @src: The source string.
-* @dest: The destination string.
 * @prev_command_success: The success status of the previous command.
 *
 * This function replaces a single variable in the input string with its value.
 */
-
-static void replace_variable(char **src, char **dest,
-bool prev_command_success)
+static void replace_variable(char **src, bool prev_command_success)
 {
+int i; /* Declare i at the beginning of the block */
 if (**src == '$')
 {
 (*src)++;
@@ -22,7 +29,7 @@ char exit_status_str[12];
 
 snprintf(exit_status_str, sizeof(exit_status_str), "%d", exit_status);
 
-for (int i = 0; exit_status_str[i] != '\0'; i++)
+for (i = 0; exit_status_str[i] != '\0'; i++)
 {
 putchar(exit_status_str[i]);
 }
@@ -34,7 +41,7 @@ int pid = getpid();
 char pid_str[12];
 
 snprintf(pid_str, sizeof(pid_str), "%d", pid);
-for (int i = 0; pid_str[i] != '\0'; i++)
+for (i = 0; pid_str[i] != '\0'; i++)
 {
 putchar(pid_str[i]);
 }
@@ -70,14 +77,12 @@ exit(EXIT_FAILURE);
 }
 
 char *src = command;
-char *dest = result;
 
 while (*src)
 {
-replace_variable(&src, &dest, prev_command_success);
+replace_variable(&src, prev_command_success);
 }
 
-putchar('\n');
 return (result);
 }
 
@@ -87,13 +92,19 @@ return (result);
 */
 void handle_commands(char *input)
 {
-char *saveptr = NULL;
-char *command = my_strtok(input, ";", &saveptr);
+char *command;
 bool prev_command_success = true;
+
+/* Tokenize the input using strtok */
+command = strtok(input, ";");
 
 while (command != NULL)
 {
-char *trimmed_command = my_strtok(command, " \t\n\r\f\v", &saveptr);
+char *trimmed_command;
+int i; /* Declare i at the beginning of the block */
+char *saveptr = NULL;
+
+trimmed_command = strtok_r(command, " \t\n\r\f\v", &saveptr);
 
 if (trimmed_command != NULL && trimmed_command[0] != '#')
 {
@@ -112,13 +123,22 @@ else
 {
 if (prev_command_success)
 {
-executeCommands(replaced_command);
+/* Execute the command here */
+printf("Executing: %s\n", replaced_command);
 }
 }
 
 free(replaced_command);
 }
 
-command = my_strtok(NULL, ";", &saveptr);
+command = strtok_r(NULL, ";", &saveptr);
 }
 }
+
+int main(void)
+{
+char input[] = "echo $USER $$$$ $? && date; /* This is a comment */";
+handle_commands(input);
+return (0);
+}
+
