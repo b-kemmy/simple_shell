@@ -14,14 +14,13 @@ int parseCmd(char *input, char **args)
 {
 	int num_args = 0;
 	char *new_line = strchr(input, '\n');
+	char *token;
+        char *saveptr = NULL;
 
 	if (new_line)
 	{
 		*new_line = '\0';
 	}
-
-	char *token;
-	char *saveptr = NULL;
 
 	for (token = my_strtok(input, " ", &saveptr); token != NULL;
 token = my_strtok(NULL, " ", &saveptr))
