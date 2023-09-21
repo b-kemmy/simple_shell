@@ -5,9 +5,9 @@
 * printEnvironment - Prints the environment variables
 */
 void printEnvironment(void)
-int i;
 {
 char **env_var = environ; /** Access the environment variables*/
+int i;
 
 for (i = 0; env_var[i] != NULL; i++)
 {
