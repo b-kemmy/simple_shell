@@ -59,8 +59,9 @@ return (i); /** Number of characters read */
 */
 ssize_t my_realloc(char **lineptr, size_t *n)
 {
-*n += 128; /** Extend buffer size */
 char *temp = (char *)realloc(*lineptr, *n);
+*n += 128; /** Extend buffer size */
+
 if (temp == NULL)
 {
 return (-1); /** Allocation failure */
